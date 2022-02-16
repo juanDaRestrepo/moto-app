@@ -1,5 +1,7 @@
 
 export const types = {
     login: '[Auth] Login',
-    logout:'[Auth] Logout'
+    logout:'[Auth] Logout',
+
+    takeResourse:'[Resource] takeResource'
 }
