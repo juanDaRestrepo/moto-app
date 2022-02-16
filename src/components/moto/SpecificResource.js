@@ -2,14 +2,14 @@ import React from 'react'
 
 export const SpecificResource = ({hour}) => {
   return (
-    <div className='specific_resource'> 
-        <div className='hour'>
+    <div className='row mt-1'> 
+         
+        <div className='col-1 d-flex justify-content-end'>
           <span>{hour}</span>
         </div>
-        <div className='button_take_resource'>
-          
+        <div className='col-1'>
           <button
-            className='btn'
+            className='btn btn-light'
           >
             Take Resource
           </button>

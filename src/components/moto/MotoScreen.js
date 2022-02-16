@@ -7,16 +7,22 @@ export const MotoScreen = () => {
   const numberOfResources  = formatHours();
   console.log(numberOfResources);
   return (
-    <div className='resources'>
-       <Navbar />
-      {
-        numberOfResources.map( hour => (
+    <div>
+      
+      <Navbar />
+      <div className='row'>
+        <div className="col-5"></div>
+        <div className="col-4">
+            {
+              numberOfResources.map( hour => (
                     <SpecificResource 
                         key={ hour }
                         hour={hour}
                     />
-        ))
-      } 
+              ))
+            } 
+        </div>
+      </div>
     </div>
   )
 }
