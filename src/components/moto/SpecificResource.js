@@ -1,13 +1,14 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+
 import { startTakeResource } from '../../redux/actions/resource'
 
 
-export const SpecificResource = ({hour}) => {
-
+export const SpecificResource = ({hour,hours}) => {
+  
   const dispatch = useDispatch()  
   const handleTakeResource = (hour) => {
-    dispatch(startTakeResource(hour))
+    dispatch(startTakeResource(hour,hours))
   }
 
   return (

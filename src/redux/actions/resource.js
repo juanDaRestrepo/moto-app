@@ -1,18 +1,29 @@
-import { db  } from "../../firebase/firebaseConfig";
-// Create a reference to the cities collection
-import { collection, query, where } from "firebase/firestore";
 
-export const startTakeResource = (hour) => {
+import  {db}   from "../../firebase/firebaseConfig";
+
+
+
+
+
+
+export const startTakeResource = (hour,hours) => {
     return async( dispatch, getState ) =>{
         const uid = getState().auth.uid
-       
-        const hours ={
-            hour:hour
-        }
-        const doc =await db.collection(`${uid}/resources/hours`).add(hours)
-        console.log(doc);
+        
+         if(hours.indexOf(hour)===-1){
+            const hours ={
+                hour:hour,
+                active: true
+            }
+            const doc =await db.collection(`${uid}/resources/hours`).add(hours);
+            
+         }
+        
+        
     }
 }
+
+
 
 export const takeResource = (hour) =>{
 
