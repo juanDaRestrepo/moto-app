@@ -1,6 +1,6 @@
 
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { db } from "../../firebase/firebaseConfig";
 
 
@@ -22,9 +22,9 @@ export const MotoScreen = () => {
     });
   }, [uid]);
 
-    
+  const numberOfResources = useMemo(() => formatHours(), [])
 
-  const numberOfResources = formatHours();
+  
 
   return (
     <div>
