@@ -1,3 +1,5 @@
+import { types } from "../types/types";
+
 /*
     {
         hour:'',
@@ -7,13 +9,21 @@
     
 */
 const initialState = {
-    takenHoursByUser:[],
-    hours:[]
+    takenHoursByUser:[]
 }
 export const resourcesReducer = (state=initialState, action) => {
     
     switch (action.type) {
-
+        case types.takeResourse:
+            return{
+                ...state,
+                takenHoursByUser: [ ...state.takenHoursByUser,action.payload ]
+            }
+        case types.loadResourcesFromUser:
+            return{
+                ...state,
+                takenHoursByUser: [action.payload]
+            }
         default:
             return state;
     }

@@ -1,26 +1,30 @@
 
-import { useSelector } from "react-redux";
-import { useEffect, useMemo, useState } from "react";
-import { db } from "../../firebase/firebaseConfig";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useMemo } from "react";
+
 
 
 import { SpecificResource } from "./SpecificResource";
 import { formatHours } from "../../helpers/formatHours";
 import { Navbar } from "../ui/Navbar";
+import { loadHoursFromUser} from "../../redux/actions/resource";
+
 
 export const MotoScreen = () => {
-  const [hours, setHours] = useState([]);
+
+  const dispatch = useDispatch();
+
+  
   const { uid } = useSelector((state) => state.auth);
 
-
   useEffect(() => {
-    db.collection(`${uid}/resources/hours`).onSnapshot((snap) => {
-      const hours = [];
-      snap.forEach((snapHijo) => hours.push(snapHijo.data().hour));
-      console.log(hours);
-      setHours(hours); 
-    });
-  }, [uid]);
+    
+    dispatch(loadHoursFromUser())
+    
+  }, [dispatch])
+  
+ 
+  
 
   const numberOfResources = useMemo(() => formatHours(), [])
 
@@ -33,7 +37,7 @@ export const MotoScreen = () => {
         <div className="col-5"></div>
         <div className="col-4">
           {numberOfResources.map((hour) => (
-            <SpecificResource key={hour} hour={hour} uid={uid} hours={hours}/>
+            <SpecificResource key={hour} hour={hour} uid={uid} />
           ))}
         </div>
       </div>
